@@ -1,0 +1,22 @@
+.links {
+    display: flex;
+    background-color: rgb(255, 200, 99);
+    height: 35px;
+    border-radius: 5px;
+    color: white;
+}
+
+.text {
+    margin: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    align-self: center;
+    font-size: 21px;
+}
+
+.link {
+    margin-left: 5px;
+    margin-right: 5px;
+    align-self: center;
+    font-size: 21px;
+}
