@@ -2,7 +2,7 @@ import { Component } from "react";
 
 export class Count extends Component {
     state = {
-        Field: null,
+        Field: "",
         ServerAnswer: ""
     }
 
@@ -32,6 +32,26 @@ export class Count extends Component {
     }
 
     addNumber = () => {
+        // Number() - функция, которая проверяет, является ли строка числом
+        // * если она получает строку-число, то она возвращает само число, 
+        // иначе - NaN (значение, которое не равно само себе)
+        //
+        // isNaN() - функция, которая проверяет, является ли полученное значение значением NaN
+        // * она возвращает true или false
+        if (isNaN(Number(this.state.Field)) === true) {
+            this.setState({
+                ServerAnswer: "Было введено не число или поле пусто. Попробуйте повторить ввод снова"
+            })
+            return
+        }
+        // trim() - функция, которая удаляет пробелы в начале и конце строки
+        if (this.state.Field != this.state.Field.trim()) {
+            this.setState({
+                ServerAnswer: "В начале или в конце числа есть пробелы. Пожалуйста, напишите без них!"
+            })
+            return
+        }
+
         fetch(`http://localhost:8081/count?count=${this.state.Field}`, {method: "POST"})
         .then((response) => response.json())
         .then(data => {
