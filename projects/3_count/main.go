@@ -29,7 +29,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			data := Output{"Было введено не число или поле пусто.\nПопробуйте повторить ввод снова"}
 			formed, _ := json.Marshal(data)
 
-			w.WriteHeader(http.StatusBadRequest)
+			w.WriteHeader(400)
 			w.Write(formed)
 		} else {
 			counter += val

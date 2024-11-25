@@ -11,12 +11,15 @@ export class Hello extends Component {
         fetch("http://localhost:8082/get")
         .then(reponse => reponse.json())
         .then((data) => {
-                console.log(data.result)
                 this.setState({
                     text: data.result
                 })
+                console.log(this.text)
         })
         .catch(() => {
+            this.setState({
+                text: "Возникла ошибка при получении данных или сервер неактивен"
+            })
             console.log("Возникла ошибка при получении данных или сервер неактивен")
         })
     }
