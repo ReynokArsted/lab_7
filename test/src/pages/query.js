@@ -23,7 +23,7 @@ export class Query extends Component {
 
         if (this.state.Field[0] == " " || this.state.Field[this.state.Field.length-1] == " "){
             this.setState({
-                ServerAnswer: `В начале или в конце имени есть пробелы. Пожалуйста, напишите без них!`
+                ServerAnswer: "В начале или в конце имени есть пробелы. Пожалуйста, напишите без них!"
             })
             return
         }
