@@ -15,27 +15,30 @@ export class Count extends Component {
     }
 
     getCounter = () => {
-        var uri = `http://localhost:8081/count`
-        fetch(uri, {method: "GET", headers: {"Content-Type":"application/json"}})
+        fetch(`http://localhost:8081/count`, {method: "GET"})
         .then((response) => response.json())
         .then(data => {
             this.setState({
                 ServerAnswer: data.massage
             })
+            console.log(data.massage)
         })
         .catch(() => {
+            this.setState({
+                ServerAnswer: "Возникла ошибка при получении данных или сервер неактивен"
+            })
             console.log("Возникла ошибка при получении данных или сервер неактивен")
         })
     }
 
     addNumber = () => {
-        var uri = `http://localhost:8081/count?count=${this.state.Field}`
-        fetch(uri, {method: "POST", headers: {"Content-Type":"application/json"}})
+        fetch(`http://localhost:8081/count?count=${this.state.Field}`, {method: "POST"})
         .then((response) => response.json())
         .then(data => {
             this.setState({
                 ServerAnswer: data.massage
             })
+            console.log(this.state.ServerAnswer)
         })
         .catch(() => {
             console.log("Возникла ошибка при получении данных или сервер неактивен")
@@ -48,7 +51,6 @@ export class Count extends Component {
                 <div className="blocks">
                     <div>
                         <button onClick={this.getCounter}>Получить значение счётчика</button>
-                        <a className="counter_value"></a>
                     </div>
                     <div>
                         <button onClick={this.addNumber}>Увеличить значение счётчика на</button>
@@ -59,7 +61,7 @@ export class Count extends Component {
                             onChange={(e) => {this.updateFiled(e)}}
                         ></input>
                     </div>
-                    {this.state.ServerAnswer != "" && <p>{this.state.ServerAnswer}</p>}
+                    {this.state.ServerAnswer != "" && <p className="answer">{this.state.ServerAnswer}</p>}
                 </div>
             </>
         )
